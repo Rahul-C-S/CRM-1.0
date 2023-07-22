@@ -29,7 +29,10 @@
                         <!-- /.card-header -->
 
 
-                        @isset($clients)
+                        @php
+                            if(!empty($clients)):
+                        @endphp
+        
                         <br><h4 class="ml-4">Results: {{$clients->total()}}</h4>
                         <a href="{{route('clients.list')}}" class="ml-4 bg-dark text-light p-2" style="width: 100px"><strong>Go Back</strong></a>
                         <br>
@@ -83,7 +86,9 @@
                                 <p>Pages: {{ $clients->lastpage() }} </p>
                             </div>
                             <!-- /.card-body -->
-                        @endisset
+                            @php
+                            endif;
+                        @endphp
 
 
                     </div>

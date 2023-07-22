@@ -65,7 +65,11 @@ class Clients extends Controller
 
     public function search()
     {
+        if(!empty(request())){
 
+       if(empty(request('input'))){
+        return redirect()->route('clients.list')->with('error_message', 'Invalid Search!');
+       }
 
         $clients = [];
 
@@ -83,6 +87,9 @@ class Clients extends Controller
 
 
         return view('features.clients.search', compact('clients'));
+    }else{
+        return redirect()->route('clients.list');
+    }
     }
 
 
@@ -102,9 +109,5 @@ class Clients extends Controller
 
 
         return json_encode($clients);
-
-        return view('features.clients.search', compact('clients'));
     }
-
-    
 }
