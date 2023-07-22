@@ -4,6 +4,7 @@ namespace App\Http\Controllers\features;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientSaveRequest;
+use App\Http\Requests\ClientUpdateRequest;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,6 +26,9 @@ class Clients extends Controller
 
     public function save(ClientSaveRequest $request)
     {
+        if (empty(request('name'))) {
+            return redirect()->route('clients.list')->with('error_message', 'Invalid Request!');
+        }
 
         $input = $request->validated();
 
@@ -41,8 +45,12 @@ class Clients extends Controller
         return view('features.clients.edit', compact('client'));
     }
 
-    public function update(ClientSaveRequest $request)
+    public function update(ClientUpdateRequest $request)
     {
+        if (empty(request('client_id'))) {
+            return redirect()->route('clients.list')->with('error_message', 'Invalid Request!');
+        }
+
 
         $input = $request->validated();
 
@@ -65,11 +73,11 @@ class Clients extends Controller
 
     public function search()
     {
-        if(!empty(request())){
 
-       if(empty(request('input'))){
-        return redirect()->route('clients.list')->with('error_message', 'Invalid Search!');
-       }
+
+        if (empty(request('input'))) {
+            return redirect()->route('clients.list')->with('error_message', 'Invalid Search!');
+        }
 
         $clients = [];
 
@@ -87,9 +95,6 @@ class Clients extends Controller
 
 
         return view('features.clients.search', compact('clients'));
-    }else{
-        return redirect()->route('clients.list');
-    }
     }
 
 

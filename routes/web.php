@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 //Routes withot authentication
 
 Route::get('/login', [Login::class, 'index'])->name('login');
-Route::post('/do-login', [Login::class, 'doLogin'])->name('do.login');
+Route::any('/do-login', [Login::class, 'doLogin'])->name('do.login');
 
 //End routes withot authentication
 
@@ -24,10 +24,10 @@ Route::middleware('auth')->group(function () {
         Route::get('', [Clients::class, 'index'])->name('list');
 
         Route::get('create', [Clients::class, 'create'])->name('create');
-        Route::post('save', [Clients::class, 'save'])->name('save');
+        Route::any('save', [Clients::class, 'save'])->name('save');
 
         Route::get('edit/{client_id}', [Clients::class, 'edit'])->name('edit');
-        Route::post('update', [Clients::class, 'update'])->name('update');
+        Route::any('update', [Clients::class, 'update'])->name('update');
 
         Route::get('delete/{client_id}', [Clients::class, 'delete'])->name('delete');
 
