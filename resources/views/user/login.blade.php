@@ -38,7 +38,7 @@
                             <div class="form-check mb-0">
                                 <input class="form-check-input me-2" type="checkbox" value="1" id="form2Example3" name="remember_me" />
                                 <label class="form-check-label" for="form2Example3">
-                                    Remember me
+                                    Keep me logged
                                 </label>
                             </div>
 

@@ -2453,11 +2453,12 @@ textarea.form-control {
 
 .form-inline {
   display: -ms-flexbox;
-  display: flex;
+  display: inline-block;
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
   -ms-flex-align: center;
   align-items: center;
+  width: 45%;
 }
 
 .form-inline .form-check {
@@ -11793,7 +11794,7 @@ body.sidebar-collapse:not(.sidebar-mini-xs):not(.sidebar-mini-md):not(.sidebar-m
 
 body:not(.layout-fixed) .main-sidebar {
   height: inherit;
-  min-height: 100%;
+  min-height: 130%;
   position: absolute;
   top: 0;
 }

@@ -31,6 +31,11 @@ Route::middleware('auth')->group(function () {
 
         Route::get('delete/{client_id}', [Clients::class, 'delete'])->name('delete');
 
+        Route::post('search', [Clients::class, 'search'])->name('search');
+        Route::post('suggestion', [Clients::class, 'suggestion'])->name('suggestion');
+
+        
+
 
     });
 

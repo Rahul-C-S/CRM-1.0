@@ -21,8 +21,10 @@
 
 <!-- REQUIRED SCRIPTS -->
 
+
 <!-- jQuery -->
 <script src="{{asset('js/jquery.min.js')}}"></script>
+
 <!-- Bootstrap -->
 <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE -->
