@@ -103,13 +103,13 @@ class Clients extends Controller
         $clients = [];
 
         if (request('select') == 'store_name' and !empty(request('input'))) {
-            $clients = Client::where('business_name', 'LIKE', '%' . request('input') . '%')->get();
+            $clients = Client::where('business_name', 'LIKE', '%' . request('input') . '%')->latest()->get();
         }
         if (request('select') == 'postcode' and !empty(request('input'))) {
-            $clients = Client::where('postcode', 'LIKE', '%' . request('input') . '%')->get();
+            $clients = Client::where('postcode', 'LIKE', '%' . request('input') . '%')->latest()->get();
         }
         if (request('select') == 'phone' and !empty(request('input'))) {
-            $clients = Client::where('phone', 'LIKE', '%' . request('input') . '%')->get();
+            $clients = Client::where('phone', 'LIKE', '%' . request('input') . '%')->latest()->get();
         }
 
 
