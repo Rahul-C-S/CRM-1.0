@@ -7,20 +7,27 @@ use Illuminate\Http\Request;
 
 class Login extends Controller
 {
-    public function index(){
+    public function index()
+    {
 
         return view('user.login');
     }
 
-    public function doLogin(){
+    public function doLogin()
+    {
 
         $input = request()->only(['username', 'password']);
-        if(auth()->attempt($input)){
+        if (auth()->attempt($input, request('remember_me'))) {
 
             return redirect()->route('dashboard')->with('success_message', 'Login Successfull!');
-        }else{
+        } else {
             return redirect()->route('login')->with('error_message', 'Invalid Credentials!');
-            
         }
+    }
+
+    public function logout()
+    {
+        auth()->logout();
+        return redirect()->route('login');
     }
 }

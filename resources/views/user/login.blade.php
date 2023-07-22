@@ -11,6 +11,12 @@
                 </div>
                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                     <h1>Login</h1>
+
+                    @if (session()->has('error_message'))
+
+                    <p class="alert alert-danger p-1 text-center">{{session()->get('error_message')}}</p>
+                        
+                    @endif
                     <form action="{{route('do.login')}}" method="POST">
                         @csrf
                        
