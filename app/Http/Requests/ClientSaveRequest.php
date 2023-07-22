@@ -27,7 +27,7 @@ class ClientSaveRequest extends FormRequest
             'phone' => ['required', 'numeric', 'min:9',],
             'postcode' => ['required'],
             'business_name' => ['required'],
-            'website' => ['required', 'url'],
+            'website' => ['required'],
         ];
     }
 }

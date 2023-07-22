@@ -28,4 +28,31 @@ class Clients extends Controller
         return redirect()->route('clients.list')->with('success_message', 'Client Added');
         
     }
+
+    public function edit($client_id){
+
+        $client = Client::find(decrypt($client_id));
+
+
+        return view('features.clients.edit',compact('client'));
+    }
+
+    public function update(ClientSaveRequest $request){
+
+        $input = $request->validated();
+
+        $client = Client::find($request->client_id);
+
+        $client->update($input);
+        return redirect()->route('clients.list')->with('success_message', 'Client Updated');
+        
+    }
+
+
+    public function delete($id){
+        $client = Client::find(decrypt($id));
+        $client->delete();
+
+        return redirect()->route('clients.list')->with('error_message', 'Client Deleted!');
+    }
 }

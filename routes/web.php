@@ -22,8 +22,14 @@ Route::middleware('auth')->group(function () {
 
     Route::name('clients.')->prefix('clients')->group(function () {
         Route::get('', [Clients::class, 'index'])->name('list');
+
         Route::get('create', [Clients::class, 'create'])->name('create');
         Route::post('save', [Clients::class, 'save'])->name('save');
+
+        Route::get('edit/{client_id}', [Clients::class, 'edit'])->name('edit');
+        Route::post('update', [Clients::class, 'update'])->name('update');
+
+        Route::get('delete/{client_id}', [Clients::class, 'delete'])->name('delete');
 
 
     });

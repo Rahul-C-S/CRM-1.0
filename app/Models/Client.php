@@ -16,4 +16,5 @@ class Client extends Model
         'business_name',
         'website'
     ];
+    protected $hidden = ['id'];
 }

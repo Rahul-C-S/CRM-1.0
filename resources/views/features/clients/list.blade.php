@@ -29,7 +29,7 @@
 
                         <div class="card-header d-flex justify-content-end">
                             <div class="insert">
-                                <a href="{{route('clients.create')}}" class="btn btn-sm btn-dark">Insert</a>
+                                <a href="{{ route('clients.create') }}" class="btn btn-sm btn-dark">Insert</a>
                             </div>
                             <h4 class="ml-4 mr-2">Export:</h4>
                             <div class="export">
@@ -67,8 +67,10 @@
                                             <td>{{ $client->postcode }}</td>
                                             <td>{{ $client->website }}</td>
                                             <td style="width:150px;">
-                                                <a href="" class="btn btn-primary btn-sm">Edit</a>
-                                                <a href="" class="btn btn-danger btn-sm">Delete</a>
+                                                <a href="{{ route('clients.edit', encrypt($client->id)) }}"
+                                                    class="btn btn-primary btn-sm">Edit</a>
+                                                <a href="{{ route('clients.delete', encrypt($client->id)) }}"
+                                                    class="btn btn-danger btn-sm">Delete</a>
                                             </td>
 
 
