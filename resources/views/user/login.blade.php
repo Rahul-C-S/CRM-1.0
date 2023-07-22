@@ -42,7 +42,7 @@
                                 </label>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Login</button>
+                            <button type="submit" class="btn btn-outline-primary fw-bold">Login</button>
                         </div>
 
                      
