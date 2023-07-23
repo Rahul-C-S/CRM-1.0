@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Name</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" name="name">
+                        <input type="text" class="form-control" id="exampleInputEmail1" name="name" value="{{old('name')}}">
                     </div>
 
                     @error('name') <p class="p-1 alert alert-danger">{{ $message }}</p> @enderror
@@ -21,32 +21,32 @@
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Email</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" name="email">
+                        <input type="text" class="form-control" id="exampleInputPassword1" name="email" value="{{old('email')}}">
                     </div>
                     @error('email') <p class="p-1 alert alert-danger">{{ $message }}</p> @enderror
 
                     <div class="form-group">
                         <label for="exampleInputEmail1">Phone</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" name="phone">
+                        <input type="text" class="form-control" id="exampleInputEmail1" name="phone" value="{{old('phone')}}">
                     </div>
                     @error('phone') <p class="p-1 alert alert-danger">{{ $message }}</p> @enderror
 
                     <div class="form-group">
                         <label for="exampleInputEmail1">Postcode</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" name="postcode">
+                        <input type="text" class="form-control" id="exampleInputEmail1" name="postcode" value="{{old('postcode')}}">
                     </div>
                     @error('postcode') <p class="p-1 alert alert-danger">{{ $message }}</p> @enderror
 
                     <div class="form-group">
                         <label for="exampleInputEmail1">Business Name</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" name="business_name">
+                        <input type="text" class="form-control" id="exampleInputEmail1" name="business_name" value="{{old('business_name')}}">
                     </div>
                     @error('business_name') <p class="p-1 alert alert-danger">{{ $message }}</p> @enderror
 
 
                     <div class="form-group">
                         <label for="exampleInputEmail1">Website</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" name="website">
+                        <input type="text" class="form-control" id="exampleInputEmail1" name="website" @if (session()->has('website'))value="{{session()->get('website')}}" @else value="{{old('website')}}" @endif>
                     </div>
                     @error('website') <p class="p-1 alert alert-danger">{{ $message }}</p> @enderror
 
@@ -65,3 +65,4 @@
     </div>
     <!-- /.card -->
 @endsection
+

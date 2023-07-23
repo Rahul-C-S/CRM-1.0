@@ -15,7 +15,7 @@
 
                     <div class="form-group">
                         <label for="exampleInputEmail1">Website</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" name="website">
+                        <input type="text" class="form-control" id="exampleInputEmail1" name="website" value="{{old('website')}}">
                     </div>
                     @error('website')
                         <p class="p-1 alert alert-danger">{{ $message }}</p>
@@ -23,7 +23,7 @@
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Issue</label>
-                        <textarea class="form-control" id="exampleInputPassword1" name="issue" rows="5"></textarea>
+                        <textarea class="form-control" id="exampleInputPassword1" name="issue" rows="5">{{old('issue')}}</textarea>
                     </div>
                     @error('issue')
                         <p class="p-1 alert alert-danger">{{ $message }}</p>
@@ -31,7 +31,7 @@
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Remarks</label>
-                        <textarea class="form-control" id="exampleInputPassword1" name="remarks" rows="5"></textarea>
+                        <textarea class="form-control" id="exampleInputPassword1" name="remarks" rows="5">{{old('remarks')}}</textarea>
                     </div>
                    
 

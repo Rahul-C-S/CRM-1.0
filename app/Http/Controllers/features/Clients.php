@@ -13,12 +13,7 @@ class Clients extends Controller
 {
     public function index()
     {
-        if (cache()->has('clients')) {
-            $clients = cache()->get('clients');
-        } else {
-            $clients = Client::latest()->paginate(15);
-            cache()->put('clients', $clients);
-        }
+        $clients = Client::latest()->paginate(15);
 
 
         return view('features.clients.list', compact('clients'));
@@ -26,6 +21,7 @@ class Clients extends Controller
 
     public function create()
     {
+      
 
         return view('features.clients.create');
     }
@@ -39,7 +35,7 @@ class Clients extends Controller
         $input = $request->validated();
 
         Client::create($input);
-        cache()->forget('clients');
+
         return redirect()->route('clients.list')->with('success_message', 'Client Added');
     }
 
@@ -64,7 +60,7 @@ class Clients extends Controller
         $client = Client::find($request->client_id);
 
         $client->update($input);
-        cache()->forget('clients');
+
 
         return redirect()->route('clients.list')->with('success_message', 'Client Updated');
     }
@@ -77,7 +73,7 @@ class Clients extends Controller
             return redirect()->route('clients.list')->with('error_message', 'Invalid Request!');
         }
         $client->delete();
-        cache()->forget('clients');
+
 
         return redirect()->route('clients.list')->with('error_message', 'Client Deleted!');
     }

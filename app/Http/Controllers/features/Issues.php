@@ -14,12 +14,10 @@ class Issues extends Controller
     public function index()
     {
 
-        if (cache()->has('issues')) {
-            $issues = cache()->get('issues');
-        } else {
-            $issues = Issue::latest()->paginate(15);
-            cache()->put('issues', $issues);
-        }
+
+        $issues = Issue::latest()->paginate(15);
+
+
         return view('features.issues.list', compact('issues'));
     }
 
@@ -39,6 +37,10 @@ class Issues extends Controller
         $input = $request->validated();
 
         $client = Client::where('website', 'LIKE', '%' . $request->website . '%')->first();
+        if(empty($client->id)){
+            session()->flash('website', $request->website);
+            return redirect()->route('clients.create')->with('error_message', 'Add the client details first!');
+        }
         $input['client_id'] = $client->id;
 
         $user = Auth::user();
@@ -46,7 +48,7 @@ class Issues extends Controller
         $input['updated_by'] = $user->username;
 
         Issue::create($input);
-        cache()->forget('issues');
+
         return redirect()->route('issues.list')->with('success_message', 'Issue created!');
     }
 
@@ -71,7 +73,7 @@ class Issues extends Controller
 
         $issue = Issue::find(request('issue_id'));
         $issue->update(request()->only('status', 'remarks'));
-        cache()->forget('issues');
+
         return redirect()->route('issues.list')->with('success_message', 'Issue Updated!');
     }
 
@@ -80,15 +82,14 @@ class Issues extends Controller
 
         $issue = Issue::find(decrypt($id));
 
-        if(!empty($issue)){
+        if (!empty($issue)) {
             $issue->delete();
 
-            cache()->forget('issues');
-    
+
+
             return redirect()->route('issues.list')->with('error_message', 'Issue Deleted!');
         }
 
         return redirect()->route('issues.list')->with('error_message', 'Invalid Request!');
-       
     }
 }
