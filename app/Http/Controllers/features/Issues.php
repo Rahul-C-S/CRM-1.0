@@ -8,6 +8,9 @@ use App\Models\Client;
 use App\Models\Issue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Rap2hpoutre\FastExcel\FastExcel as FastExcel;
+use Barryvdh\DomPDF\Facade\Pdf as Pdf;
+
 
 class Issues extends Controller
 {
@@ -37,7 +40,7 @@ class Issues extends Controller
         $input = $request->validated();
 
         $client = Client::where('website', 'LIKE', '%' . $request->website . '%')->first();
-        if(empty($client->id)){
+        if (empty($client->id)) {
             session()->flash('website', $request->website);
             return redirect()->route('clients.create')->with('error_message', 'Add the client details first!');
         }
@@ -91,5 +94,33 @@ class Issues extends Controller
         }
 
         return redirect()->route('issues.list')->with('error_message', 'Invalid Request!');
+    }
+
+
+
+    public function export()
+    {
+
+        $issues = Issue::all();
+        return (new FastExcel($issues))->download('issues_'.date('d-m-y').'.csv', function ($issues) {
+            return [
+                'Website' => $issues->client->website,
+                'Issue' => $issues->issue,
+                'Updated By' => $issues->updated_by,
+                'Status' => $issues->status_text,
+                'Created At' => date('D-M-Y', strtotime($issues->created_at)),
+                'Updated At' => date('D-M-Y', strtotime($issues->updated_at)),
+                'Remarks' => $issues->remarks,
+
+            ];
+        });
+    }
+
+
+    public function export_pdf(){
+        $issues = Issue::all();
+        $pdf = Pdf::loadView('exports.issues', ['issues'=>$issues]);
+        return $pdf->download('invoice.pdf');
+        
     }
 }

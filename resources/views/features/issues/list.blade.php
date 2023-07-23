@@ -35,65 +35,62 @@
                             </div>
                             <h4 class="ml-4 mr-2">Export:</h4>
                             <div class="export">
-                                <a href="" class="btn btn-sm btn-dark">PDF</a>
-                                <a href="" class="btn btn-sm btn-dark">CSV</a>
+                                <a href="{{ route('issues.export-pdf') }}" class="btn btn-sm btn-dark">PDF</a>
+                                <a href="{{ route('issues.export') }}" class="btn btn-sm btn-dark">CSV</a>
                             </div>
 
                         </div>
 
                         @isset($issues)
-
-
-                        <div class="card-body">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 10px">#</th>
-                                        <th>Website</th>
-                                        <th>Issue/Request</th>
-                                        <th>Updated By</th>
-                                        <th>Remarks</th>
-                                        <th>Status</th>
-                                        <th>Created at</th>
-                                        <th>Actions</th>
-
-                                    </tr>
-                                </thead>
-                                    
-                               
-                                <tbody>
-                                    @foreach ($issues as $issue)
+                            <div class="card-body">
+                                <table class="table table-bordered">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $issues->firstItem() + $loop->index }}</td>
-                                            <td>{{ $issue->client->website }}</td>
-                                            <td>{{ $issue->issue }}</td>
-                                            <td>{{ $issue->updated_by }}</td>
-                                            <td>{{ $issue->remarks }}</td>
-                                            <td>{{ $issue->status_text }}</td>
-                                            <td>{{ $issue->created_at }}</td>
-                                            <td style="width:150px;">
-                                                <a href="{{ route('issues.edit', encrypt($issue->id)) }}"
-                                                    class="btn btn-primary btn-sm">Edit</a>
-                                                <a href="{{ route('issues.delete', encrypt($issue->id)) }}"
-                                                    class="btn btn-danger btn-sm">Delete</a>
-                                            </td>
-
-
-
-
+                                            <th style="width: 10px">#</th>
+                                            <th>Website</th>
+                                            <th>Issue/Request</th>
+                                            <th>Updated By</th>
+                                            <th>Remarks</th>
+                                            <th>Status</th>
+                                            <th>Created at</th>
+                                            <th>Actions</th>
 
                                         </tr>
-                                    @endforeach
+                                    </thead>
 
 
-                                </tbody>
-                            </table>
-                            <br>
-                            {{ $issues->links() }}
-                            <p>Pages: {{ $issues->lastpage() }} </p>
-                        </div>
-                        <!-- /.card-body -->
+                                    <tbody>
+                                        @foreach ($issues as $issue)
+                                            <tr>
+                                                <td>{{ $issues->firstItem() + $loop->index }}</td>
+                                                <td>{{ $issue->client->website }}</td>
+                                                <td>{{ $issue->issue }}</td>
+                                                <td>{{ $issue->updated_by }}</td>
+                                                <td>{{ $issue->remarks }}</td>
+                                                <td>{{ $issue->status_text }}</td>
+                                                <td>{{ $issue->created_at }}</td>
+                                                <td style="width:150px;">
+                                                    <a href="{{ route('issues.edit', encrypt($issue->id)) }}"
+                                                        class="btn btn-primary btn-sm">Edit</a>
+                                                    <a href="{{ route('issues.delete', encrypt($issue->id)) }}"
+                                                        class="btn btn-danger btn-sm">Delete</a>
+                                                </td>
 
+
+
+
+
+                                            </tr>
+                                        @endforeach
+
+
+                                    </tbody>
+                                </table>
+                                <br>
+                                {{ $issues->links() }}
+                                <p>Pages: {{ $issues->lastpage() }} </p>
+                            </div>
+                            <!-- /.card-body -->
                         @endisset
 
                     </div>

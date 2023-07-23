@@ -52,6 +52,11 @@ Route::middleware('auth')->group(function () {
 
         Route::any('search', [Issues::class, 'search'])->name('search');
         Route::post('suggestion', [Issues::class, 'suggestion'])->name('suggestion');
+
+        Route::get('export', [Issues::class, 'export'])->name('export');
+        Route::get('export-pdf', [Issues::class, 'export_pdf'])->name('export-pdf');
+
+
     });
 
     //End issues
