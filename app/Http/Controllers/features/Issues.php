@@ -101,7 +101,7 @@ class Issues extends Controller
     public function export()
     {
 
-        $issues = Issue::all();
+        $issues = Issue::latest()->get();
         return (new FastExcel($issues))->download('issues_'.date('d-m-y').'.csv', function ($issues) {
             return [
                 'Website' => $issues->client->website,
@@ -118,9 +118,9 @@ class Issues extends Controller
 
 
     public function export_pdf(){
-        $issues = Issue::all();
-        $pdf = Pdf::loadView('exports.issues', ['issues'=>$issues]);
-        return $pdf->download('invoice.pdf');
+        $issues = Issue::latest()->get();
+        $pdf = Pdf::loadView('exports.issues', ['issues'=>$issues])->setPaper('a4', 'landscape');
+        return $pdf->download('issues_'.date('d-m-y').'.pdf');
         
     }
 }
