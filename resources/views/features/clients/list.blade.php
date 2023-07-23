@@ -60,8 +60,8 @@
                             </div>
                             <h4 class="ml-4 mr-2">Export:</h4>
                             <div class="export">
-                                <a href="" class="btn btn-sm btn-dark">PDF</a>
-                                <a href="" class="btn btn-sm btn-dark">CSV</a>
+                                <a href="{{route('clients.export-pdf')}}" class="btn btn-sm btn-dark">PDF</a>
+                                <a href="{{route('clients.export')}}" class="btn btn-sm btn-dark">CSV</a>
                             </div>
 
                         </div>

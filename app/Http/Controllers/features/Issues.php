@@ -123,4 +123,7 @@ class Issues extends Controller
         return $pdf->download('issues_'.date('d-m-y').'.pdf');
         
     }
+
+
+    
 }

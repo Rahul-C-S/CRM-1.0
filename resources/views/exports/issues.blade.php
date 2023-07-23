@@ -1,6 +1,6 @@
 <table border="2" style="width: 100%; border-collapse: collapse; margin:auto;">
     <thead>
-        <tr>
+        <tr style="background: rgb(85, 84, 84); color: white">
             <th style="width: 10px">#</th>
             <th>Website</th>
             <th>Issue/Request</th>
@@ -20,8 +20,8 @@
                 <td>{{ $issue->issue }}</td>
                 <td>{{ $issue->updated_by }}</td>    
                 <td>{{ $issue->status_text }}</td>
-                <td>{{ date('d-M-Y',strtotime($issue->created_at) ) }}</td>
-                <td>{{ date('d-M-Y',strtotime($issue->updated_at) ) }}</td>
+                <td>{{ date('d-m-Y',strtotime($issue->created_at) ) }}</td>
+                <td>{{ date('d-m-Y',strtotime($issue->updated_at) ) }}</td>
                 <td>{{ $issue->remarks }}</td>
 
 

@@ -34,6 +34,9 @@ Route::middleware('auth')->group(function () {
 
         Route::any('search', [Clients::class, 'search'])->name('search');
         Route::post('suggestion', [Clients::class, 'suggestion'])->name('suggestion');
+
+        Route::get('export', [Clients::class, 'export'])->name('export');
+        Route::get('export-pdf', [Clients::class, 'export_pdf'])->name('export-pdf');
     });
 
     //End clients
@@ -49,9 +52,6 @@ Route::middleware('auth')->group(function () {
         Route::any('update', [Issues::class, 'update'])->name('update');
 
         Route::get('delete/{issue_id}', [Issues::class, 'delete'])->name('delete');
-
-        Route::any('search', [Issues::class, 'search'])->name('search');
-        Route::post('suggestion', [Issues::class, 'suggestion'])->name('suggestion');
 
         Route::get('export', [Issues::class, 'export'])->name('export');
         Route::get('export-pdf', [Issues::class, 'export_pdf'])->name('export-pdf');

@@ -8,6 +8,10 @@ use App\Http\Requests\ClientUpdateRequest;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Rap2hpoutre\FastExcel\FastExcel as FastExcel;
+use Barryvdh\DomPDF\Facade\Pdf as Pdf;
+
+
 
 class Clients extends Controller
 {
@@ -124,4 +128,37 @@ class Clients extends Controller
 
         return json_encode($clients);
     }
+
+
+
+public function export(){
+
+    $clients = Client::latest()->get();
+        return (new FastExcel($clients))->download('clients_'.date('d-m-y').'.csv', function ($client) {
+            return [
+                'Name' => $client->name,
+                'Email' => $client->email,
+                'Phone' => $client->phone,
+                'Postcode' => $client->postcode,
+                'Business Name' => $client->business_name,
+                'Website URL' => $client->website,
+                'Created At' => date('D-M-Y', strtotime($client->created_at)),
+
+            ];
+        });
+
+
+}
+
+public function export_pdf(){
+    $clients = Client::latest()->get();
+    $pdf = Pdf::loadView('exports.clients', ['clients'=>$clients])->setPaper('a4', 'landscape');
+    return $pdf->download('clients_'.date('d-m-y').'.pdf');
+    
+}
+
+
+
+
+
 }
