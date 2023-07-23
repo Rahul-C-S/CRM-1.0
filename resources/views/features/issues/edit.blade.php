@@ -4,52 +4,39 @@
         <!-- general form elements -->
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Add Client</h3>
+                <h3 class="card-title">Edit Issue</h3>
             </div>
             <!-- /.card-header -->
+            <div class="issues" style="margin-left: 20px; margin-top: 20px">
+            <h4>Website: {{$issue->client->website}}</h4>
+            <h4>Issue: {{$issue->issue}}</h4>
+        </div>
+
+        <hr>
             <!-- form start -->
-            <form action="{{ route('clients.update') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('issues.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="client_id" value="{{$client->id}}">
+                <input type="hidden" name="issue_id" value="{{$issue->id}}">
                 <div class="card-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Name</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" name="name" value="{{$client->name}}">
-                    </div>
-
-                    @error('name') <p class="p-1 alert alert-danger">{{ $message }}</p> @enderror
-
 
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Email</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" name="email" value="{{$client->email}}">
+                        <label for="exampleInputPassword1">Status: </label>
+                        <select name="status" id="">
+                            <option @selected($issue->status == 1) value="1">Pending</option>
+                            <option @selected($issue->status == 2) value="2">In progress</option>
+                            <option @selected($issue->status == 3) value="3">Resolved</option>
+                        </select>
                     </div>
-                    @error('email') <p class="p-1 alert alert-danger">{{ $message }}</p> @enderror
+                    <hr>
 
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Phone</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" name="phone" value="{{$client->phone}}">
+                        <label for="exampleInputPassword1">Remarks</label>
+                        <textarea class="form-control" id="exampleInputPassword1" name="remarks" rows="5">{{$issue->remarks}}</textarea>
                     </div>
-                    @error('phone') <p class="p-1 alert alert-danger">{{ $message }}</p> @enderror
-
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Postcode</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" name="postcode" value="{{$client->postcode}}">
-                    </div>
-                    @error('postcode') <p class="p-1 alert alert-danger">{{ $message }}</p> @enderror
-
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Business Name</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" name="business_name" value="{{$client->business_name}}">
-                    </div>
-                    @error('business_name') <p class="p-1 alert alert-danger">{{ $message }}</p> @enderror
+                   
 
 
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Website</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" name="website" value="{{$client->website}}">
-                    </div>
-                    @error('website') <p class="p-1 alert alert-danger">{{ $message }}</p> @enderror
+                    
 
 
                     <!-- /.card-body -->

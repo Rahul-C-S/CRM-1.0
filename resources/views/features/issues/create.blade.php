@@ -33,9 +33,7 @@
                         <label for="exampleInputPassword1">Remarks</label>
                         <textarea class="form-control" id="exampleInputPassword1" name="remarks" rows="5"></textarea>
                     </div>
-                    @error('remarks')
-                        <p class="p-1 alert alert-danger">{{ $message }}</p>
-                    @enderror
+                   
 
 
 

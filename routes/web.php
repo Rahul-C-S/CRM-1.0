@@ -45,7 +45,7 @@ Route::middleware('auth')->group(function () {
         Route::get('create', [Issues::class, 'create'])->name('create');
         Route::any('save', [Issues::class, 'save'])->name('save');
 
-        Route::get('edit/{client_id}', [Issues::class, 'edit'])->name('edit');
+        Route::get('edit/{issue_id}', [Issues::class, 'edit'])->name('edit');
         Route::any('update', [Issues::class, 'update'])->name('update');
 
         Route::get('delete/{issue_id}', [Issues::class, 'delete'])->name('delete');

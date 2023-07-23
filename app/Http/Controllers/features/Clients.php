@@ -13,14 +13,14 @@ class Clients extends Controller
 {
     public function index()
     {
-        if(cache()->has('clients')){
+        if (cache()->has('clients')) {
             $clients = cache()->get('clients');
-        }else{
+        } else {
             $clients = Client::latest()->paginate(15);
             cache()->put('clients', $clients);
         }
 
-       
+
         return view('features.clients.list', compact('clients'));
     }
 
@@ -73,6 +73,9 @@ class Clients extends Controller
     public function delete($id)
     {
         $client = Client::find(decrypt($id));
+        if (empty($client)) {
+            return redirect()->route('clients.list')->with('error_message', 'Invalid Request!');
+        }
         $client->delete();
         cache()->forget('clients');
 
