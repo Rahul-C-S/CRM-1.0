@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\common\Dashboard;
 use App\Http\Controllers\features\Clients;
+use App\Http\Controllers\features\Issues;
 use App\Http\Controllers\user\Login;
 use Illuminate\Support\Facades\Route;
 
@@ -33,13 +34,27 @@ Route::middleware('auth')->group(function () {
 
         Route::any('search', [Clients::class, 'search'])->name('search');
         Route::post('suggestion', [Clients::class, 'suggestion'])->name('suggestion');
-
-        
-
-
     });
 
     //End clients
+
+    //Issues
+    Route::name('issues.')->prefix('issues')->group(function () {
+        Route::get('', [Issues::class, 'index'])->name('list');
+
+        Route::get('create', [Issues::class, 'create'])->name('create');
+        Route::any('save', [Issues::class, 'save'])->name('save');
+
+        Route::get('edit/{client_id}', [Issues::class, 'edit'])->name('edit');
+        Route::any('update', [Issues::class, 'update'])->name('update');
+
+        Route::get('delete/{issue_id}', [Issues::class, 'delete'])->name('delete');
+
+        Route::any('search', [Issues::class, 'search'])->name('search');
+        Route::post('suggestion', [Issues::class, 'suggestion'])->name('suggestion');
+    });
+
+    //End issues
 
 });
 

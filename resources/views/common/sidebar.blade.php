@@ -19,7 +19,7 @@
 
 
 
-      <li class="nav-item menu-open">
+      {{-- <li class="nav-item menu-open">
         <a href="#" class="nav-link active">
           <i class="fa-solid fa-users-line"></i>
           <p>
@@ -37,8 +37,28 @@
          
          
         </ul>
+      </li> --}}
+      <li class="nav-item">
+        
+        <a href="{{route('clients.list')}}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+          <p>
+            Clients
+            
+          </p>
+        </a>
       </li>
 
+      <li class="nav-item">
+        
+        <a href="{{route('issues.list')}}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+          <p>
+            Issues
+            
+          </p>
+        </a>
+      </li>
 
 
 

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('issue', 1000)->nullable();
             $table->string('updated_by', 1000)->nullable();
             $table->string('remarks', 1000)->nullable();
-            $table->string('status', 100)->comment('Pending, In progress, Resolved')->default('Pending')->index();
+            $table->integer('status')->comment('1: Pending, 2: In progress, 3: Resolved')->default(1)->index();
             $table->timestamps();
         });
     }
