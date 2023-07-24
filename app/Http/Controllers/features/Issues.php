@@ -19,8 +19,7 @@ class Issues extends Controller
     {
 
 
-        $issues = Issue::latest()->paginate(15);
-
+        $issues = Issue::paginate();
 
         return view('features.issues.list', compact('issues'));
     }
@@ -139,13 +138,11 @@ class Issues extends Controller
 
                 session()->flash('phone', $number);
                 return redirect()->route('clients.create')->with('error_message', 'Client data doesn\'t exist!');
-               
             }
 
-            foreach($clientDatas as $data){
+            foreach ($clientDatas as $data) {
 
                 session()->flash('website', $data->website);
-
             }
 
 
