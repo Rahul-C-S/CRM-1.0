@@ -56,10 +56,16 @@ Route::middleware('auth')->group(function () {
         Route::get('export', [Issues::class, 'export'])->name('export');
         Route::get('export-pdf', [Issues::class, 'export_pdf'])->name('export-pdf');
 
+        Route::get('caller-id/{number}', [Issues::class, 'callerId'])->name('caller-id');
+
+
 
     });
 
     //End issues
+
+
+
 
 });
 

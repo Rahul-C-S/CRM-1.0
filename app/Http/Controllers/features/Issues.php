@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\features;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CallerIdRequest;
 use App\Http\Requests\IssueSaveRequest;
 use App\Models\Client;
 use App\Models\Issue;
@@ -102,7 +103,7 @@ class Issues extends Controller
     {
 
         $issues = Issue::latest()->get();
-        return (new FastExcel($issues))->download('issues_'.date('d-m-y').'.csv', function ($issues) {
+        return (new FastExcel($issues))->download('issues_' . date('d-m-y') . '.csv', function ($issues) {
             return [
                 'Website' => $issues->client->website,
                 'Issue' => $issues->issue,
@@ -117,13 +118,42 @@ class Issues extends Controller
     }
 
 
-    public function export_pdf(){
+    public function export_pdf()
+    {
         $issues = Issue::latest()->get();
-        $pdf = Pdf::loadView('exports.issues', ['issues'=>$issues])->setPaper('a4', 'landscape');
-        return $pdf->download('issues_'.date('d-m-y').'.pdf');
-        
+        $pdf = Pdf::loadView('exports.issues', ['issues' => $issues])->setPaper('a4', 'landscape');
+        return $pdf->download('issues_' . date('d-m-y') . '.pdf');
     }
 
 
-    
+    public function callerId($number)
+    {
+
+        if (is_numeric($number)) {
+
+            $clientDatas = Client::where('phone', 'LIKE', '%' . $number . '%')->limit(1)->get();
+
+
+
+            if (count($clientDatas) <= 0) {
+
+                session()->flash('phone', $number);
+                return redirect()->route('clients.create')->with('error_message', 'Client data doesn\'t exist!');
+               
+            }
+
+            foreach($clientDatas as $data){
+
+                session()->flash('website', $data->website);
+
+            }
+
+
+
+
+            return view('features.callerid.callerid', compact('number', 'clientDatas'));
+        }
+
+        return redirect()->route('dashboard')->with('error_message', 'Invalid Request!');
+    }
 }

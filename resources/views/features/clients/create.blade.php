@@ -27,7 +27,7 @@
 
                     <div class="form-group">
                         <label for="exampleInputEmail1">Phone</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" name="phone" value="{{old('phone')}}">
+                        <input type="text" class="form-control" id="exampleInputEmail1" name="phone" @if (session()->has('phone')) value="{{session()->get('phone')}}" @else value="{{old('phone')}}" @endif>
                     </div>
                     @error('phone') <p class="p-1 alert alert-danger">{{ $message }}</p> @enderror
 

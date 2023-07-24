@@ -134,7 +134,7 @@
 <script src="{{ asset('js/jquery.min.js') }}"></script>
 
 <style>
-    #searchResults{ text-align: center; font-size:20px; border: 1px solid black;color: black; border-radius: 5px; position: absolute; z-index: 2; background: white; display: block; width: max-content; left: 150px; margin-top: 15px; }
+    #searchResults{ text-align: center; font-size:20px; border: 1px solid black;color: black; border-radius: 1px; position: absolute; z-index: 2; background: white; display: block; width: max-content; left: 150px; margin-top: 15px; }
     hr{margin: 0 !important;}
 </style>
 
