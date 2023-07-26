@@ -133,9 +133,11 @@
 <script src="{{ asset('js/jquery.min.js') }}"></script>
 
 <style>
-    #searchResults{ text-align: center; font-size:20px; border: 1px solid black; border-radius: 1px; position: absolute; z-index: 2; background: white; display: block; width: max-content; left: 150px; margin-top: 15px; }
+    #searchResults{ text-align: center; font-size:20px; border: 1px solid black; border-radius: 1px; position: absolute; z-index: 2; background: #343a40; display: block; width: max-content; left: 150px; margin-top: 15px; }
     hr{margin: 0 !important;}
-    #searchResults a{ color: black !important;}
+    #searchResults a{ color: white !important; width: 100%; display: block;}
+    
+    #searchResults a:hover{ color: rgb(0, 0, 0) !important; background: white; }
 </style>
 
 <script>
@@ -165,20 +167,20 @@
                                     customer +=
                                         '<a href="#" id="choose" onclick="assign(\'' + obj[
                                             i].business_name + '\')">' + obj[i].business_name +
-                                        '</a><br><hr>'
+                                        '</a><hr>'
 
                                 }
 
                                 if (select == 'postcode') {
                                     customer +=
                                         '<a href="#" id="choose" onclick="assign(\'' + obj[
-                                            i].postcode + '\')">' + obj[i].postcode + '</a><br><hr>'
+                                            i].postcode + '\')">' + obj[i].postcode + '</a><hr>'
                                 }
 
                                 if (select == 'phone') {
                                     customer +=
                                         '<a href="#" id="choose" onclick="assign(\'' + obj[
-                                            i].phone + '\')">' + obj[i].phone + '</a><br><hr>'
+                                            i].phone + '\')">' + obj[i].phone + '</a><hr>'
                                 }
 
 

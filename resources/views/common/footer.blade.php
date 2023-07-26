@@ -11,7 +11,7 @@
 
  <!-- Main Footer -->
   <footer class="main-footer text-center">
-    <strong>Copyright &copy; 2023 CRM.</strong>&nbsp;
+    <strong>Copyright &copy; 2023  {{ env('APP_NAME')}}.</strong>&nbsp;
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
     </div>
