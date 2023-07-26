@@ -12,12 +12,13 @@ use Rap2hpoutre\FastExcel\FastExcel as FastExcel;
 use Barryvdh\DomPDF\Facade\Pdf as Pdf;
 
 
-
 class Clients extends Controller
 {
     public function index()
     {
-        $clients = Client::latest()->paginate(15);
+        $clients = Client::latest()->paginate(10);
+        
+       
 
 
         return view('features.clients.list', compact('clients'));
@@ -116,7 +117,7 @@ class Clients extends Controller
         $clients = [];
 
         if (request('select') == 'store_name' and !empty(request('input'))) {
-            $clients = Client::where('business_name', 'LIKE', '%' . request('input') . '%')->latest()->get();
+            $clients = Client::where('business_name', 'LIKE', '%' . request('input') . '%')->latest()->limit(15)->get();
         }
         if (request('select') == 'postcode' and !empty(request('input'))) {
             $clients = Client::where('postcode', 'LIKE', '%' . request('input') . '%')->latest()->get();

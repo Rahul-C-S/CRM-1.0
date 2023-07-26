@@ -4,6 +4,7 @@ use App\Http\Controllers\common\Dashboard;
 use App\Http\Controllers\features\Clients;
 use App\Http\Controllers\features\Issues;
 use App\Http\Controllers\user\Login;
+use App\Http\Controllers\user\Users;
 use Illuminate\Support\Facades\Route;
 
 //Routes withot authentication
@@ -57,15 +58,30 @@ Route::middleware('auth')->group(function () {
         Route::get('export-pdf', [Issues::class, 'export_pdf'])->name('export-pdf');
 
         Route::get('caller-id/{number}', [Issues::class, 'callerId'])->name('caller-id');
-
-
-
     });
 
     //End issues
 
 
+    //Users
+    Route::name('users.')->prefix('users')->group(function () {
+        Route::get('', [Users::class, 'index'])->name('list');
+        Route::get('create', [Users::class, 'create'])->name('create');
+        Route::any('save', [Users::class, 'save'])->name('save');
 
+        Route::get('edit/{id}', [Users::class, 'edit'])->name('edit');
+        Route::any('update', [Users::class, 'update'])->name('update');
+
+        Route::get('delete/{id}', [Users::class, 'delete'])->name('delete');
+
+       
+
+
+
+    });
+
+
+    //End Users
 
 });
 

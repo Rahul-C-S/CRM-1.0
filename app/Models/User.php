@@ -45,4 +45,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function user_group(){
+        return $this->hasOne(UserGroup::class, 'id', 'role');
+    }
+
+    public function getStatusTextAttribute(){
+        return ($this->status == 1) ? 'Enabled' : 'Disabled';
+    }
+
 }

@@ -112,7 +112,6 @@
                             </table>
                             <br>
                             {{ $clients->links() }}
-                            <p>Pages: {{ $clients->lastpage() }} </p>
                         </div>
                         <!-- /.card-body -->
 
@@ -134,8 +133,9 @@
 <script src="{{ asset('js/jquery.min.js') }}"></script>
 
 <style>
-    #searchResults{ text-align: center; font-size:20px; border: 1px solid black;color: black; border-radius: 1px; position: absolute; z-index: 2; background: white; display: block; width: max-content; left: 150px; margin-top: 15px; }
+    #searchResults{ text-align: center; font-size:20px; border: 1px solid black; border-radius: 1px; position: absolute; z-index: 2; background: white; display: block; width: max-content; left: 150px; margin-top: 15px; }
     hr{margin: 0 !important;}
+    #searchResults a{ color: black !important;}
 </style>
 
 <script>

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('user_group', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name', 100);
-            $table->boolean('status')->default(1)->comment('1: Active, 0:Inactive');
+            $table->string('name', 100)->index();
+            $table->boolean('status')->default(1)->comment('1: Active, 0:Inactive')->index();
             $table->timestamps();
 
         });

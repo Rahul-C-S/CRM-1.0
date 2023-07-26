@@ -18,9 +18,16 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         UserGroup::create([
-            'name' => 'system admin',
+            'name' => 'admin_l1',
             'status' => 1,
         ]);
+
+        UserGroup::create([
+            'name' => 'admin_l2',
+            'status' => 1,
+        ]);
+       
+
         User::create([
             'username' => 'admin',
             'email' => 'admin@mail.com',

@@ -61,17 +61,23 @@
       </li>
 
 
+   @if (auth()->user()->user_group->name == 'admin_l1')
+  
+       
+  
+
 
       <li class="nav-item">
         
-        <a href="" class="nav-link">
+        <a href="{{route('users.list')}}" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
           <p>
-            QR Code Generator
+            Users
             
           </p>
         </a>
       </li>
+      @endif
 
       <li class="nav-item">
         <a href="{{route('logout')}}" class="nav-link">

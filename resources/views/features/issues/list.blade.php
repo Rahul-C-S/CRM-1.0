@@ -88,7 +88,7 @@
                                 </table>
                                 <br>
                                 {{ $issues->links() }}
-                                <p>Pages: {{ $issues->lastpage() }} </p>
+                               
                             </div>
                             <!-- /.card-body -->
                         @endisset

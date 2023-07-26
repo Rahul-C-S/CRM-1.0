@@ -19,7 +19,7 @@ class Issues extends Controller
     {
 
 
-        $issues = Issue::paginate();
+        $issues = Issue::paginate(10);
 
         return view('features.issues.list', compact('issues'));
     }
