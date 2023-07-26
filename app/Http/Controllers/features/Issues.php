@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\features;
 
+use App\Events\IssueCreatedEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CallerIdRequest;
 use App\Http\Requests\IssueSaveRequest;
+
 use App\Models\Client;
 use App\Models\Issue;
 use Illuminate\Http\Request;
@@ -42,6 +44,8 @@ class Issues extends Controller
         $client = Client::where('website', 'LIKE', '%' . $request->website . '%')->first();
         if (empty($client->id)) {
             session()->flash('website', $request->website);
+
+
             return redirect()->route('clients.create')->with('error_message', 'Add the client details first!');
         }
         $input['client_id'] = $client->id;
@@ -51,6 +55,8 @@ class Issues extends Controller
         $input['updated_by'] = $user->username;
 
         Issue::create($input);
+
+        IssueCreatedEvent::dispatch($input);
 
         return redirect()->route('issues.list')->with('success_message', 'Issue created!');
     }
