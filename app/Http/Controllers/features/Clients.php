@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Rap2hpoutre\FastExcel\FastExcel as FastExcel;
 use Barryvdh\DomPDF\Facade\Pdf as Pdf;
-
+use Exception;
 
 class Clients extends Controller
 {
@@ -73,7 +73,9 @@ class Clients extends Controller
 
     public function delete($id)
     {
+       
         $client = Client::find(decrypt($id));
+         
         if (empty($client)) {
             return redirect()->route('clients.list')->with('error_message', 'Invalid Request!');
         }
