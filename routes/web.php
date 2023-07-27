@@ -3,6 +3,7 @@
 use App\Http\Controllers\common\Dashboard;
 use App\Http\Controllers\features\Clients;
 use App\Http\Controllers\features\Issues;
+use App\Http\Controllers\settings\AlertEmails;
 use App\Http\Controllers\user\Login;
 use App\Http\Controllers\user\Users;
 use Illuminate\Support\Facades\Route;
@@ -82,6 +83,16 @@ Route::middleware('auth')->group(function () {
 
 
     //End Users
+
+    //Settings
+    Route::name('settings.')->prefix('settings')->group(function () {
+
+        Route::get('alert-emails', [AlertEmails::class, 'index'])->name('alert-emails');
+        Route::any('alert-emails-update', [AlertEmails::class, 'update'])->name('alert-emails-update');
+
+    });
+
+    //End settings
 
 });
 

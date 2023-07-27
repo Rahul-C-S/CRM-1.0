@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\AlertEmail;
 use App\Models\Client;
 use App\Models\Issue;
 use App\Models\User;
@@ -34,6 +35,10 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
             'status' => 1,
             'role' => 1,
+        ]);
+
+        AlertEmail::create([
+            'emails' => 'mailbox@example.com'
         ]);
 
 
