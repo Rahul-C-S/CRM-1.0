@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login', [Login::class, 'index'])->name('login');
 Route::any('/do-login', [Login::class, 'doLogin'])->name('do.login');
 
-//End routes withot authentication
+//End routes without authentication
 
 //Routes requires authentication
 

@@ -80,7 +80,7 @@ class Users extends Controller
 
     public function delete($id)
     {
-        if ($this->hasPermission()) {
+        if ($this->hasPermission()) { 
 
             $user = User::find(decrypt($id));
 
