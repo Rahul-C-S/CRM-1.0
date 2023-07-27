@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\features;
 
 use App\Events\IssueCreatedEvent;
+use App\Events\IssueUpdatedEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CallerIdRequest;
 use App\Http\Requests\IssueSaveRequest;
-
+use App\Http\Requests\IssueUpdateRequest;
 use App\Models\Client;
 use App\Models\Issue;
 use Illuminate\Http\Request;
@@ -73,7 +74,7 @@ class Issues extends Controller
         return view('features.issues.edit', compact('issue'));
     }
 
-    public function update()
+    public function update(IssueUpdateRequest $request)
     {
 
         if (empty(request('issue_id'))) {
@@ -81,7 +82,19 @@ class Issues extends Controller
         }
 
         $issue = Issue::find(request('issue_id'));
-        $issue->update(request()->only('status', 'remarks'));
+        $input = $request->validated();
+
+        $input['updated_by'] = auth()->user()->username;
+
+
+        $issue->update($input);
+
+
+        $client = Client::find($issue->client_id);
+
+       
+
+        IssueUpdatedEvent::dispatch($issue, $client->website);
 
         return redirect()->route('issues.list')->with('success_message', 'Issue Updated!');
     }

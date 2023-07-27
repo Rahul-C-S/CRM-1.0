@@ -9,18 +9,20 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class IssueCreatedMail extends Mailable
+class IssueUpdatedMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-
     public $input;
-    public function __construct($input)
+    public $website;
+
+    public function __construct($input, $website)
     {
         $this->input = $input;
+        $this->website = $website;
     }
 
     /**
@@ -29,7 +31,7 @@ class IssueCreatedMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Issue Created!',
+            subject: 'Issue Updated!',
         );
     }
 
@@ -39,7 +41,7 @@ class IssueCreatedMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.issuecreated',
+            view: 'emails.issueupdated',
         );
     }
 
