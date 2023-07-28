@@ -24,7 +24,7 @@ class ClientSaveRequest extends FormRequest
         return [
             'name' => ['required', 'min:3'],
             'email' => ['required', 'email', 'unique:clients,email'],
-            'phone' => ['required', 'numeric', 'min:9',],
+            'phone' => ['required', 'min:9',],
             'postcode' => ['required'],
             'business_name' => ['required'],
             'website' => ['required'],
