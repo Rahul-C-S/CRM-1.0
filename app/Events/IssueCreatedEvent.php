@@ -19,7 +19,7 @@ class IssueCreatedEvent
      */
 
 
-     public $input;
+    public $input;
     public function __construct($input)
     {
         $this->input = $input;

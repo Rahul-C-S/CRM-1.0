@@ -16,7 +16,7 @@ class IssueCreatedAlertListener
      */
 
 
-    public function __construct($input)
+    public function __construct()
     {
     }
 
