@@ -59,6 +59,12 @@ Route::middleware('auth')->group(function () {
         Route::get('export-pdf', [Issues::class, 'export_pdf'])->name('export-pdf');
 
         Route::get('caller-id/{number}', [Issues::class, 'callerId'])->name('caller-id');
+
+        Route::get('pending', [Issues::class, 'pending'])->name('pending');
+        Route::get('progress', [Issues::class, 'progress'])->name('progress');
+        Route::get('resolved', [Issues::class, 'resolved'])->name('resolved');
+
+
     });
 
     //End issues

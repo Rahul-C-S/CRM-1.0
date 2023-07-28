@@ -172,4 +172,33 @@ class Issues extends Controller
 
         return redirect()->route('dashboard')->with('error_message', 'Invalid Request!');
     }
+
+
+    public function pending(){
+
+      
+        $issues = Issue::where('status', '=', '1')->paginate(10);
+
+        return view('features.issues.list', compact('issues'));
+    }
+
+    public function progress(){
+
+      
+        $issues = Issue::where('status', '=', '2')->paginate(10);
+
+        return view('features.issues.list', compact('issues'));
+    }
+
+    public function resolved(){
+
+      
+        $issues = Issue::where('status', '=', '3')->paginate(10);
+
+        return view('features.issues.list', compact('issues'));
+    }
+
+
+
+    
 }

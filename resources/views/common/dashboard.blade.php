@@ -37,7 +37,7 @@
                                 </p>
                                 <p class="ml-auto d-flex flex-column text-right">
                                     <span class="text-success">
-                                       <a href="{{route('issues.list')}}">View</a>
+                                       <a href="{{route('issues.pending')}}">View</a>
                                     </span>
                                    
                                 </p>
@@ -54,7 +54,7 @@
                                 </p>
                                 <p class="ml-auto d-flex flex-column text-right">
                                     <span class="text-success">
-                                      <a href="{{route('issues.list')}}">View</a>
+                                      <a href="{{route('issues.progress')}}">View</a>
                                       
 
                                     </span>
@@ -74,7 +74,7 @@
                                 <p class="ml-auto d-flex flex-column text-right">
                                     <span class="text-success">
                                       
-                                       <a href="{{route('issues.list')}}">View</a>
+                                       <a href="{{route('issues.resolved')}}">View</a>
                                         
                                     </span>
                                     
