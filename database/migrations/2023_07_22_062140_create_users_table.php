@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('password', 100);
             $table->rememberToken();
             $table->unsignedBigInteger('role')->default(1);
-            $table->foreign('role')->references('id')->on('user_group');
+            $table->foreign('role')->references('id')->on('user_group')->onDelete('cascade');
             $table->boolean('status')->default(1)->comment('1: Active, 0:Inactive');
             $table->timestamps();
             

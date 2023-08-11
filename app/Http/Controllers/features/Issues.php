@@ -66,8 +66,14 @@ class Issues extends Controller
 
     public function edit($id)
     {
+        try {
+            $id = decrypt($id);
+        } catch(\RuntimeException $e) {
+            return redirect()->route('issues.list')->with('error_message', 'Invalid Request!');
 
-        $issue = Issue::find(decrypt($id));
+        }
+
+        $issue = Issue::find($id);
 
 
 
@@ -101,8 +107,15 @@ class Issues extends Controller
 
     public function delete($id)
     {
+        try {
+            $id = decrypt($id);
+        } catch(\RuntimeException $e) {
+            return redirect()->route('issues.list')->with('error_message', 'Invalid Request!');
 
-        $issue = Issue::find(decrypt($id));
+        }
+        
+
+        $issue = Issue::find($id);
 
         if (!empty($issue)) {
             $issue->delete();

@@ -81,10 +81,6 @@ Route::middleware('auth')->group(function () {
 
         Route::get('delete/{id}', [Users::class, 'delete'])->name('delete');
 
-       
-
-
-
     });
 
 

@@ -47,7 +47,14 @@ class Clients extends Controller
     public function edit($client_id)
     {
 
-        $client = Client::find(decrypt($client_id));
+        try {
+            $id = decrypt($client_id);
+        } catch(\RuntimeException $e) {
+            return redirect()->route('clients.list')->with('error_message', 'Invalid Request!');
+
+        }
+
+        $client = Client::find($id);
 
 
         return view('features.clients.edit', compact('client'));
@@ -73,8 +80,14 @@ class Clients extends Controller
 
     public function delete($id)
     {
+        try {
+            $id = decrypt($id);
+        } catch(\RuntimeException $e) {
+            return redirect()->route('clients.list')->with('error_message', 'Invalid Request!');
+
+        }
        
-        $client = Client::find(decrypt($id));
+        $client = Client::find($id);
          
         if (empty($client)) {
             return redirect()->route('clients.list')->with('error_message', 'Invalid Request!');
