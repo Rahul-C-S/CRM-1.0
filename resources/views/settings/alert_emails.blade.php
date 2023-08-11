@@ -16,7 +16,9 @@
                 <div class="form-group">
                     <label for="exampleInputEmail1">Emails: <br><small class="alert alert-danger p-1">Seperate emails with a blank space.</small></label>
                     
-                    <input type="text" class="form-control" id="exampleInputEmail1" name="emails" value="{{$emails->emails}}">
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="emails" @if (!empty($emails->emails)) value="{{$emails->emails}}"
+                        
+                    @endif >
                 </div>
                 @error('emails')
                 <p class="p-1 alert alert-danger">{{$message}}</p>

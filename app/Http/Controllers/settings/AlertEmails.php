@@ -31,7 +31,10 @@ class AlertEmails extends Controller
 
             $update_email = $request->validated();
 
-            $emails->update($update_email);
+            if(!empty($emails)) $emails->update($update_email);
+            else AlertEmail::create($update_email);
+
+            
 
             return redirect()->route('dashboard')->with('success_message', 'Alert emails updated!');
         }
